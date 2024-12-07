@@ -1,0 +1,33 @@
+.createID-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--modules--boxShadow);
+    background-color: var(--background--modules--color);
+    & input{
+        width: 85%;
+        outline: none;
+    }
+
+    & #requirements{
+        font-size: 14px;
+        color: #777;
+        & li{
+            margin-bottom: 5px;
+        }
+        & .valid{
+            color: green;
+        }
+        & .invalid{
+            color: red;
+        }
+        /* border: 1px solid black; */
+    }
+    & .hidden{
+        display: none;
+    }
+}

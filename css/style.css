@@ -1,3 +1,10 @@
+:root{
+    --content--menu--color: #fff;
+    --border--menu--color: #6439FF;
+    --background--modules--color: #fff;
+    --modules--boxShadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
 *{
     user-select: none;
     box-sizing: border-box;
@@ -14,14 +21,15 @@ body{
     position: relative;
 }
 
-input {
+input{
     flex: 1;
     padding: 10px;
     border-radius: 30px;
     border: 1px solid #ddd;
-    & ::placeholder{
+    &::placeholder{
         color: #6439FF;
     }
+    outline: none;
 }
 
 button {
@@ -31,6 +39,7 @@ button {
     background-color: #f2f2f2;
     color: #6439FF;
     cursor: pointer;
+    outline: none;
 }
 
 .notification-box{
@@ -39,9 +48,10 @@ button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 500px;
+    max-width: 300px;
     width: 80%;
     height: 30%;
+    max-height: 300px;
     /* display: flex; */
     flex-direction: column;
     justify-content: center;
@@ -57,5 +67,13 @@ button {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     & button{
         width: 20%;
+        min-width: 70px;
     }
+}
+
+.center-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

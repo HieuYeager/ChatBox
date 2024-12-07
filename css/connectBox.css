@@ -1,0 +1,19 @@
+.connect-container {
+    max-width: 300px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--modules--boxShadow);
+    background-color: var(--background--modules--color);
+    & input {
+        width: 85%;
+    }
+    & button {
+        width: 85%;
+    }
+}
