@@ -1,5 +1,6 @@
 import data from "./data.js";
 import * as utils from "./utils.js";
+import { createPeer, setMyPeer } from "./peer.js";
 /*------------------------*/
 
 function spawnCreateID(moveToMenu = () => {}) {
@@ -63,8 +64,8 @@ function addButtonListenerOfCreateID(moveToMenu = () => {}) {
         idInput.value = randomId();
         validateId(idInput.value);
     });
-
-    createIdBtn.addEventListener("click", () => {
+    /*moveToMenu------------------------*/
+    createIdBtn.addEventListener("click", async () => {
         /*------------------------*/
         if(String(nameInput.value || "").trim() === ""){
             utils.Notification_Box("name cannot be empty!");
@@ -75,21 +76,16 @@ function addButtonListenerOfCreateID(moveToMenu = () => {}) {
             idInput.style.border = "1px solid red";
         }
         else{
-            data.myPeer = new Peer(String(idInput.value || "").trim());    
-            data.myPeer.on("error", (err) => {
-                //check for unavailable-id
-                if(err.type === "unavailable-id"){
-                    utils.Notification_Box("This ID is using by another user, please try a different ID!");
-                }
-            });
-            data.myPeer.on("open", () => {
-                // console.log("myPeer ID: " + data.myPeer.id);
-                // console.log(data.myPeer);
+            try {
+                data.myPeer = await createPeer(String(idInput.value || "").trim());
                 data.myId = idInput.value;
                 data.myName = nameInput.value;
-                //setMyPeer(data.myPeer);
                 moveToMenu();
-            })
+                setMyPeer();
+            } catch (error) {
+                console.log(error.message);
+                utils.Notification_Box(error.message);
+            }
         }
     });
 }

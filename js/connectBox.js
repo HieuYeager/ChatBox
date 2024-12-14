@@ -1,5 +1,6 @@
 import * as utils from './utils.js';
 import data from './data.js';
+import { setupConnection } from './peer.js';
 /*------------------------*/
 export function spawnConnectBox(moveToChat = () => {}) {
     utils.reSpawnInRoot(HTMLConnectBox());
@@ -18,13 +19,12 @@ function HTMLConnectBox() {
 export function addButtonListenerOfConnectBox(moveToChat = () => {}) {
     var connectBtn = document.getElementById("connect-btn");
     var connectIdInput = document.getElementById("connect-id");
+    /*------------------------*/
     connectBtn.addEventListener("click", () => {
-        if (checkIdFormat(connectIdInput.value)) {
-            data.connectId = connectIdInput.value;
-            // console.log("connectId: " + data.connectId);
-            data.connectPeer = data.myPeer.connect(data.connectId);
-            // setConnectPeer(data.connectPeer);
-            console.log("connectPeer: " + data.connectPeer);
+        if (checkIdFormat(connectIdInput.value) && data.myPeer.id !== connectIdInput.value.trim()) {
+            data.connectPeer = data.myPeer.connect(connectIdInput.value.trim());
+            // console.log("connectPeer: " + data.connectPeer);
+            setupConnection();
             moveToChat();
         }
         else {
@@ -33,6 +33,7 @@ export function addButtonListenerOfConnectBox(moveToChat = () => {}) {
     });
 }
 
+/*------------------------*/
 function checkIdFormat(id) {
     return data.validID.test(id);
 }

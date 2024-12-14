@@ -1,4 +1,4 @@
-export { spawnInRoot, removeInRoot, reSpawnInRoot, Notification_Box };
+export { spawnInRoot, removeInRoot, reSpawnInRoot, Notification_Box, Question_Box };
 
 function spawnInRoot(inner = ``) {
     // removeInRoot();
@@ -27,5 +27,29 @@ function Notification_Box(Notification = "") {
     closeBtn.addEventListener('click', () => {
         // root.removeChild(document.querySelector('.notification-box')); 
         closeBtn.parentElement.style.display = "none";  
+    });
+}
+
+function Question_Box(Question = "", yes = () => { }, no = () => { }) {
+    let notificationBox = document.querySelector('.notification-box');
+    notificationBox.innerHTML = `
+    <p>${Question}</p>
+    <div class="buttons">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+    `;
+    notificationBox.style.display = "flex";
+    let buttons = document.querySelector('.buttons');
+    /*********************************/
+    let yesBtn = document.querySelector('#yes');
+    let noBtn = document.querySelector('#no');
+    yesBtn.addEventListener('click', () => {
+        buttons.parentElement.style.display = "none";  
+        yes();
+    });
+    noBtn.addEventListener('click', () => {
+        buttons.parentElement.style.display = "none";  
+        no();
     });
 }

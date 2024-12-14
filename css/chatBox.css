@@ -1,0 +1,110 @@
+:root {
+    --background-chatBox-color: rgb(255, 254, 203);
+    --background-color: rgb(76, 201, 254);
+    --from-me-color: #4F75FF;
+    --from-them-color: #7CF5FF;
+    --border-color: rgb(55, 175, 225);
+}
+
+.container {
+    width: 40%;
+    height: 80%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(55, 175, 225, 0.3);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--background-color);
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 80% 10%;
+    & .taskBar {
+        border: initial;
+        margin: 0px;
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        & .information {
+            flex-grow: 1;
+            border: initial;
+            margin: 0px;
+            padding: 5px;
+        }
+        & #closeChat-btn {
+            width: 30px;
+            height: 30px;
+            margin: 0px;
+            margin-top: auto;
+            margin-bottom: auto;
+            padding: 5px;
+            border-radius: 3px;
+            color: red;
+        }
+    }
+    
+    & #chat-box {
+        width: 100%;
+        /* padding: 10px; */
+        margin: 0;
+        border: 2px solid var(--border-color);
+        /* border-radius: 30px; */
+        overflow-y: auto;
+        background-color: var(--background-chatBox-color);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding-bottom: 5px;
+        & .message {
+            padding: 10px;
+            text-align: left;
+            border-radius: 20px;
+            max-width: 70%;/* Giới hạn chiều rộng tối đa để tin nhắn không trải dài toàn khung */
+            word-wrap: break-word;/* Tự động xuống dòng khi nội dung quá dài */
+            white-space: normal;/* Cho phép nội dung tự động xuống dòng */
+            display: inline-block;/*Chỉ chiếm không gian nội dung*/
+            margin-top: 5px;
+        }
+        & .from-me {
+            background-color: var(--from-me-color);
+            margin-left: auto;
+        }
+        & .from-them {
+            background-color: var(--from-them-color);
+            margin-right: auto;
+        }
+    }
+
+    & #input-container {
+        display: flex;
+        gap: 5px;
+        width: 100%;
+        border: initial;
+        padding: 5px;
+        & input {
+            min-width: 100px;
+        }
+        & button {
+            width: 10%;
+            min-width: 64px;
+        }   
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+        height: 100%;
+        grid-template-rows: 7% 86% 7%;
+        & #input-container {
+            & button {
+                width: 5%;
+                min-width: 64px;
+            }   
+        }
+    }
+}
+
+

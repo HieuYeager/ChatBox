@@ -25,11 +25,11 @@ input{
     flex: 1;
     padding: 10px;
     border-radius: 30px;
-    border: 1px solid #ddd;
+    border: 1px solid #6439FF;
+    outline: none;
     &::placeholder{
         color: #6439FF;
     }
-    outline: none;
 }
 
 button {
@@ -68,6 +68,14 @@ button {
     & button{
         width: 20%;
         min-width: 70px;
+    }
+    & .buttons{
+        width: 100%;
+        justify-content: space-around;
+        & button{
+            width: 20%;
+            min-width: 70px;
+        }
     }
 }
 
