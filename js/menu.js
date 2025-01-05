@@ -9,10 +9,11 @@ function spawnMenu(moveToCreateID = () => { }, moveToConnect = () => { }) {
 }
 
 function HTMLMenu() {
+    let myInfo = data.getMyInfo();
     return `<div class = "menu-container">
             <div class="user-info">
-                <p>name: <span id="myName-span">${data.myName}</span></p>
-                <p>id: <span id="myId-span">${data.myId}</span></p>
+                <p>name: <span id="myName-span">${myInfo.myName}</span></p>
+                <p>id: <span id="myId-span">${myInfo.myId}</span></p>
                 <button id="custom-info">create ID</button>
             </div>
             <button id="connect-btn">Connect</button>

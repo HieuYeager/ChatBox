@@ -77,9 +77,9 @@ function addButtonListenerOfCreateID(moveToMenu = () => {}) {
         }
         else{
             try {
-                data.myPeer = await createPeer(String(idInput.value || "").trim());
-                data.myId = idInput.value;
-                data.myName = nameInput.value;
+                let myPeer = await createPeer(String(idInput.value || "").trim());
+                data.setMyPeer(myPeer);
+                data.setMyInfo(idInput.value, nameInput.value);
                 moveToMenu();
                 setMyPeer();
             } catch (error) {

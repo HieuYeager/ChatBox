@@ -9,13 +9,14 @@ function spawnChatBox(moveToMenu = () => {}) {
 }
 
 function HTMLChatBox() {
+    let connectInfo = data.getConnectInfo();
     return `
     <div class="container center-box">
             <div class="taskBar">    
                 <p class="information">
-                    <span>name: ${data.connectName}</span>
+                    <span>name: ${connectInfo.connectName}</span>
                     <br>
-                    <span id="my-id">ID: ${data.connectId}</span>
+                    <span id="my-id">ID: ${connectInfo.connectId}</span>
                 </p>
                 <button id = "closeChat-btn">X</button>
             </div>
@@ -33,8 +34,8 @@ function addButtonListenerOfChatBox(moveToMenu = () => {}) {
     var messageInput = document.getElementById("message");
     var closeChatBtn = document.getElementById("closeChat-btn");
     /*------------------------*/
-    //set receive message
-    data.connectPeer.on('data', (data) => {
+    // set receive message
+    data.getConnectPeer().on('data', (data) => {
         addMessageToChat(data, "from-them");
         console.log(data);
     });
@@ -42,9 +43,20 @@ function addButtonListenerOfChatBox(moveToMenu = () => {}) {
     sendBtn.addEventListener("click", () => {
         if(messageInput.value !== "" && data.connectPeer && data.connectPeer.open) {
             // console.log("send");
-            data.connectPeer.send(messageInput.value.trim());
+            data.getConnectPeer().send(messageInput.value.trim());
             addMessageToChat(messageInput.value.trim(), "from-me");
             messageInput.value = "";
+        }
+    });
+
+    addEventListener("keydown", (e) => {
+        if(e.key === "Enter") {
+            if(messageInput.value !== "" && data.connectPeer && data.connectPeer.open) {
+                // console.log("send");
+                data.getConnectPeer().send(messageInput.value.trim());
+                addMessageToChat(messageInput.value.trim(), "from-me");
+                messageInput.value = "";
+            }
         }
     });
 

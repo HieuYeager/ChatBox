@@ -32,7 +32,6 @@ function moveToChat() {
 }
 /*------------------------*/
 //default
-// moveToChat();
 moveToMenu();
 
 /*------------------------*/
