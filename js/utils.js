@@ -1,4 +1,4 @@
-export { spawnInRoot, removeInRoot, reSpawnInRoot, Notification_Box, Question_Box };
+export { spawnInRoot, removeInRoot, reSpawnInRoot, Notification_Box, Question_Box, addMessageToChat };
 
 function spawnInRoot(inner = ``) {
     // removeInRoot();
@@ -52,4 +52,11 @@ function Question_Box(Question = "", yes = () => { }, no = () => { }) {
         buttons.parentElement.style.display = "none";  
         no();
     });
+}
+
+/*********************************/
+//chat 
+function addMessageToChat(message, type) {
+    var chatBox = document.getElementById("chat-box");
+    chatBox.innerHTML += `<div class="message ${type}">${message}</div>`;
 }

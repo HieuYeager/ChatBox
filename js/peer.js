@@ -12,8 +12,12 @@ function setupConnection() {
     data.getConnectPeer().on('open', () => {
         console.log('Connected to ' + data.getConnectPeer().peer);
         // data.connectPeer.send(data.myName);
-        dataHandler();
-        sendRequest("name");
+        sendRequest("info");
+    });
+
+    data.getConnectPeer().on('data', (data) => {
+        console.log(data);
+        dataHandler(data);
     });
 
     data.getConnectPeer().on('close', () => {
@@ -38,7 +42,7 @@ function setMyPeer() {
 function createPeer(id = "") {
     return new Promise((resolve, reject) => {
         const peer = new Peer(id);
-        console.log("peer: " + peer);
+        // console.log("peer: " + peer);
         peer.on('open', () => {
             resolve(peer);
         });
@@ -54,38 +58,50 @@ function disconnectPeer() {
 }
 /*------------------------*/
 //data receive handler
-function dataHandler() {
-    data.getConnectPeer().on('data', (data) => {
-        let dataReceive = data;
-        if (dataReceive.type === "request") {
+function dataHandler(dataReceive) {
+    switch(dataReceive.type) {
+        case "request":
             requestHandler(dataReceive);
-        }
-        else if (dataReceive.type === "respond") {
-           respondHandler(dataReceive);
-        }
-        else if (dataReceive.type === "message") {
+            break;
+        case "respond":
+            respondHandler(dataReceive);
+            break;
+        case "message":
             messageHandler(dataReceive);
-        }
-    });
-    
+            break;
+    }
 }
 
 function requestHandler(dataReceive) {
-    if(dataReceive.requestType === "name") {
-        sendRespond("name", data.myName);
+    if(dataReceive.requestType === "info") {
+        sendRespond("info", data.getMyInfo());
     }
 }
 
 function respondHandler(dataReceive) {
-    if(dataReceive.respondType === "name") {
-        data.connectName = dataReceive.content;
-        console.log(data.connectName);
-        console.log(dataReceive);
+    if(dataReceive.respondType === "info") {
+        // console.log(dataReceive);
+        data.setConnectInfo(dataReceive.content.myId, dataReceive.content.myName);
+        let connectName = document.getElementById("connectName");
+        if(connectName){
+            connectName.innerHTML = "name: " + dataReceive.content.myName;
+        }
+        let connectID = document.getElementById("connectID");
+        if(connectID){
+            connectID.innerHTML = "ID: " + dataReceive.content.myId;
+        }
     }
 }
 
 function messageHandler(dataReceive) {
-    console.log(dataReceive.content);
+   
+    let chatBox = document.getElementById("chat-box");
+    if(chatBox) {
+        utils.addMessageToChat(dataReceive.content, "from-them");
+    }
+    else{
+        console.log(dataReceive.content);
+    }
 }
 /*------------------------*/
 

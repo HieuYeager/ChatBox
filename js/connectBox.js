@@ -1,6 +1,6 @@
 import * as utils from './utils.js';
 import data from './data.js';
-import { setupConnection, sendRequest } from './peer.js';
+import { setupConnection} from './peer.js';
 /*------------------------*/
 export function spawnConnectBox(moveToChat = () => {}) {
     utils.reSpawnInRoot(HTMLConnectBox());

@@ -1,6 +1,6 @@
 import * as utils from "./utils.js";
 import data from "./data.js";
-import { disconnectPeer } from "./peer.js";
+import { disconnectPeer, sendMessage } from "./peer.js";
 /*------------------------*/
 
 function spawnChatBox(moveToMenu = () => {}) {
@@ -14,9 +14,9 @@ function HTMLChatBox() {
     <div class="container center-box">
             <div class="taskBar">    
                 <p class="information">
-                    <span>name: ${connectInfo.connectName}</span>
+                    <span id="connectName">name: ${connectInfo.connectName}</span>
                     <br>
-                    <span id="my-id">ID: ${connectInfo.connectId}</span>
+                    <span id="connectID">ID: ${connectInfo.connectId}</span>
                 </p>
                 <button id = "closeChat-btn">X</button>
             </div>
@@ -35,26 +35,26 @@ function addButtonListenerOfChatBox(moveToMenu = () => {}) {
     var closeChatBtn = document.getElementById("closeChat-btn");
     /*------------------------*/
     // set receive message
-    data.getConnectPeer().on('data', (data) => {
-        addMessageToChat(data, "from-them");
-        console.log(data);
-    });
+    // data.getConnectPeer().on('data', (data) => {
+    //     addMessageToChat(data, "from-them");
+    //     console.log(data);
+    // });
     /*------------------------*/
     sendBtn.addEventListener("click", () => {
-        if(messageInput.value !== "" && data.connectPeer && data.connectPeer.open) {
+        if(messageInput.value !== "" && data.getConnectPeer() && data.getConnectPeer().open) {
             // console.log("send");
-            data.getConnectPeer().send(messageInput.value.trim());
-            addMessageToChat(messageInput.value.trim(), "from-me");
+            sendMessage(messageInput.value.trim());
+            utils.addMessageToChat(messageInput.value.trim(), "from-me");
             messageInput.value = "";
         }
     });
 
     addEventListener("keydown", (e) => {
         if(e.key === "Enter") {
-            if(messageInput.value !== "" && data.connectPeer && data.connectPeer.open) {
+            if(messageInput.value !== "" && data.getConnectPeer() && data.getConnectPeer().open) {
                 // console.log("send");
-                data.getConnectPeer().send(messageInput.value.trim());
-                addMessageToChat(messageInput.value.trim(), "from-me");
+                sendMessage(messageInput.value.trim());
+                utils.addMessageToChat(messageInput.value.trim(), "from-me");
                 messageInput.value = "";
             }
         }
@@ -69,10 +69,5 @@ function addButtonListenerOfChatBox(moveToMenu = () => {}) {
 function disconnect(){
     disconnectPeer();
     moveToMenu();
-}
-
-function addMessageToChat(message, type) {
-    var chatBox = document.getElementById("chat-box");
-    chatBox.innerHTML += `<div class="message ${type}">${message}</div>`;
 }
 export { spawnChatBox };
