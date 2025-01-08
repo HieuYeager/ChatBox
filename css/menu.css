@@ -13,7 +13,7 @@
     left: 50%;
     & .user-info{
         width: 100%;
-        height: 120px;
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: space-between;

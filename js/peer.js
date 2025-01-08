@@ -80,16 +80,8 @@ function requestHandler(dataReceive) {
 
 function respondHandler(dataReceive) {
     if(dataReceive.respondType === "info") {
-        // console.log(dataReceive);
-        data.setConnectInfo(dataReceive.content.myId, dataReceive.content.myName);
-        let connectName = document.getElementById("connectName");
-        if(connectName){
-            connectName.innerHTML = "name: " + dataReceive.content.myName;
-        }
-        let connectID = document.getElementById("connectID");
-        if(connectID){
-            connectID.innerHTML = "ID: " + dataReceive.content.myId;
-        }
+        const connectInfo = {...dataReceive.content};
+        utils.changeConnectInfo(connectInfo);
     }
 }
 

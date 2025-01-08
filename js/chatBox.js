@@ -1,6 +1,7 @@
 import * as utils from "./utils.js";
 import data from "./data.js";
 import { disconnectPeer, sendMessage } from "./peer.js";
+import { moveToMenu } from "./mainSrc.js";
 /*------------------------*/
 
 function spawnChatBox(moveToMenu = () => {}) {
@@ -13,12 +14,12 @@ function HTMLChatBox() {
     return `
     <div class="container center-box">
             <div class="taskBar">    
+                <button id = "closeChat-btn"><box-icon name='left-arrow-alt'></box-icon></button>
                 <p class="information">
                     <span id="connectName">name: ${connectInfo.connectName}</span>
                     <br>
                     <span id="connectID">ID: ${connectInfo.connectId}</span>
                 </p>
-                <button id = "closeChat-btn">X</button>
             </div>
             <div id="chat-box"></div>
             <div id="input-container">
@@ -61,7 +62,7 @@ function addButtonListenerOfChatBox(moveToMenu = () => {}) {
     });
 
     closeChatBtn.addEventListener("click", () => {
-        utils.Question_Box("Are you sure?",disconnect,);
+        utils.Question_Box("Are you sure?", moveToMenu);
     });
 }
 

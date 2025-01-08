@@ -33,14 +33,15 @@
             padding: 5px;
         }
         & #closeChat-btn {
-            width: 30px;
-            height: 30px;
+            width: fit-content;
+            height: fit-content;
             margin: 0px;
             margin-top: auto;
             margin-bottom: auto;
             padding: 5px;
             border-radius: 3px;
-            color: red;
+            background-color: transparent;
+            border-color: transparent;
         }
     }
     

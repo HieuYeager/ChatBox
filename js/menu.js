@@ -15,8 +15,8 @@ function HTMLMenu() {
                 <p>name: <span id="myName-span">${myInfo.myName}</span></p>
                 <p>id: <span id="myId-span">${myInfo.myId}</span></p>
                 <button id="custom-info">create ID</button>
+                <button id="connect-btn">Connect</button>
             </div>
-            <button id="connect-btn">Connect</button>
         </div>`;
 }
 

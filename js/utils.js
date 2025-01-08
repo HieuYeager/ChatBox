@@ -1,4 +1,5 @@
-export { spawnInRoot, removeInRoot, reSpawnInRoot, Notification_Box, Question_Box, addMessageToChat };
+import data from './data.js';
+export { spawnInRoot, removeInRoot, reSpawnInRoot, Notification_Box, Question_Box, addMessageToChat, changeConnectInfo };
 
 function spawnInRoot(inner = ``) {
     // removeInRoot();
@@ -59,4 +60,17 @@ function Question_Box(Question = "", yes = () => { }, no = () => { }) {
 function addMessageToChat(message, type) {
     var chatBox = document.getElementById("chat-box");
     chatBox.innerHTML += `<div class="message ${type}">${message}</div>`;
+}
+
+function changeConnectInfo(connectInfo = {}) {
+    console.log("sss" + connectInfo);
+    data.setConnectInfo(connectInfo.myId, connectInfo.myName);
+    let connectName = document.getElementById("connectName");
+    if (connectName) {
+        connectName.innerHTML = "name: " + data.getConnectInfo().myName;
+    }
+    let connectID = document.getElementById("connectID");
+    if (connectID) {
+        connectID.innerHTML = "ID: " + data.getConnectInfo().myId;
+    }
 }
