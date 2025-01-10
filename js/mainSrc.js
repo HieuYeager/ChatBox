@@ -33,6 +33,7 @@ function moveToChat() {
 /*------------------------*/
 //default
 moveToMenu();
+// moveToChat();
 
 /*------------------------*/
 export { moveToChat, moveToMenu };

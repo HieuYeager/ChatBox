@@ -16,7 +16,7 @@ function setupConnection() {
     });
 
     data.getConnectPeer().on('data', (data) => {
-        console.log(data);
+        // console.log(data);
         dataHandler(data);
     });
 

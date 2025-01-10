@@ -15,6 +15,7 @@ function HTMLChatBox() {
     <div class="container center-box">
             <div class="taskBar">    
                 <button id = "closeChat-btn"><box-icon name='left-arrow-alt'></box-icon></button>
+                <img src="https://pfps.gg/assets/pfps/5755-march-7th.png" id="avatar">
                 <p class="information">
                     <span id="connectName">name: ${connectInfo.connectName}</span>
                     <br>

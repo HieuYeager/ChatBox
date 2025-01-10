@@ -63,14 +63,19 @@ function addMessageToChat(message, type) {
 }
 
 function changeConnectInfo(connectInfo = {}) {
-    console.log("sss" + connectInfo);
+    console.log(connectInfo);
+    console.log("changeConnectInfo");
     data.setConnectInfo(connectInfo.myId, connectInfo.myName);
+    console.log(data.getConnectInfo());
+    /*------------------------*/
     let connectName = document.getElementById("connectName");
     if (connectName) {
-        connectName.innerHTML = "name: " + data.getConnectInfo().myName;
+        console.log("changeName");
+        connectName.innerHTML = "name: " + data.getConnectInfo().connectName;
     }
     let connectID = document.getElementById("connectID");
     if (connectID) {
-        connectID.innerHTML = "ID: " + data.getConnectInfo().myId;
+        console.log("changeID");
+        connectID.innerHTML = "ID: " + data.getConnectInfo().connectId;
     }
 }
