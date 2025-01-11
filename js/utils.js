@@ -59,7 +59,14 @@ function Question_Box(Question = "", yes = () => { }, no = () => { }) {
 //chat 
 function addMessageToChat(message, type) {
     var chatBox = document.getElementById("chat-box");
-    chatBox.innerHTML += `<div class="message ${type}">${message}</div>`;
+    if (chatBox) {
+        chatBox.innerHTML += `<div class="message ${type}">${message}</div>`;
+    }
+    let messageBox = {
+        content: message,
+        type: type
+    }
+    data.addMessageToHistory(messageBox);
 }
 
 function changeConnectInfo(connectInfo = {}) {

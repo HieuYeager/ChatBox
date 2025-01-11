@@ -87,13 +87,8 @@ function respondHandler(dataReceive) {
 
 function messageHandler(dataReceive) {
    
-    let chatBox = document.getElementById("chat-box");
-    if(chatBox) {
-        utils.addMessageToChat(dataReceive.content, "from-them");
-    }
-    else{
-        console.log(dataReceive.content);
-    }
+    utils.addMessageToChat(dataReceive.content, "from-them");
+
 }
 /*------------------------*/
 
