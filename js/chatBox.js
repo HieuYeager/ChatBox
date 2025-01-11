@@ -21,8 +21,11 @@ function HTMLChatBox() {
                     <br>
                     <span id="connectID">ID: ${connectInfo.connectId}</span>
                 </p>
+                <button><box-icon type='solid' name='info-circle'></box-icon></button>
             </div>
-            <div id="chat-box"></div>
+            <div id="chatBox-container">
+                <div id="chat-box"></div>
+            </div>
             <div id="input-container">
                 <input type="text" id="message" placeholder="Type your message...">
                 <button id="send-btn">Send</button>

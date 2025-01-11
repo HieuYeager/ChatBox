@@ -32,7 +32,7 @@
             margin: 0px;
             padding: 5px;
         }
-        & #closeChat-btn{
+        & button {
             width: fit-content;
             height: fit-content;
             margin: 0px;
@@ -55,37 +55,51 @@
             border-color: transparent;
         }
     }
-    
-    & #chat-box {
+
+    & #chatBox-container
+    {
         width: 100%;
+        height: 100%;
         /* padding: 10px; */
         margin: 0;
         border: 2px solid var(--border-color);
         /* border-radius: 30px; */
+        overflow-x: hidden;
         overflow-y: auto;
+        overflow-anchor: none;
+        scrollbar-width: thin;
         background-color: var(--background-chatBox-color);
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-end;
+        flex-direction: column-reverse;
+        /* justify-content: flex-end; */
         padding-bottom: 5px;
-        & .message {
-            padding: 10px;
-            text-align: left;
-            border-radius: 20px;
-            max-width: 70%;/* Giới hạn chiều rộng tối đa để tin nhắn không trải dài toàn khung */
-            word-wrap: break-word;/* Tự động xuống dòng khi nội dung quá dài */
-            white-space: normal;/* Cho phép nội dung tự động xuống dòng */
-            display: inline-block;/*Chỉ chiếm không gian nội dung*/
-            margin-top: 5px;
-        }
-        & .from-me {
-            background-color: var(--from-me-color);
-            margin-left: auto;
-        }
-        & .from-them {
-            background-color: var(--from-them-color);
-            margin-right: auto;
+        
+        & #chat-box {
+            height: fit-content;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: transparent;
+            padding: 5px;
+            & .message {
+                padding: 10px;
+                text-align: left;
+                border-radius: 20px;
+                max-width: 70%;/* Giới hạn chiều rộng tối đa để tin nhắn không trải dài toàn khung */
+                word-wrap: break-word;/* Tự động xuống dòng khi nội dung quá dài */
+                white-space: normal;/* Cho phép nội dung tự động xuống dòng */
+                display: inline-block;/*Chỉ chiếm không gian nội dung*/
+                margin-top: 5px;
+            }
+            & .from-me {
+                background-color: var(--from-me-color);
+                margin-left: auto;
+            }
+            & .from-them {
+                background-color: var(--from-them-color);
+                margin-right: auto;
+            }
         }
     }
 
